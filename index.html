@@ -3,27 +3,111 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 9, 2026
-        Purpose: Initial homepage file for the SkInjection Tweakments online store project.
+        Date: October 18, 2026
+        Purpose: Store homepage for SkInjection Tweakments. Introduces the brand and links to services, packages, and booking.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkInjection Tweakments</title>
-</head>
-<body>
+    <meta name="description" content="Private, personalized injectable treatments with a consultation first. Book a consultation or browse services.">
+    <title>SkInjection Tweakments | Home</title>
 
-    <header>
-        <h1>SkInjection Tweakments</h1>
-        <p>Subtle tweaks. Natural confidence.</p>
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <p>Our online store is coming soon.</p>
+    <main id="main-content">
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1 id="hero-heading">Subtle tweaks. Natural confidence.</h1>
+                    <p>Private, personalized injectable treatments with a consultation first. Book a visit that fits your schedule.</p>
+                    <p class="button-row">
+                        <a class="button" href="book.html">Book a Consultation</a>
+                        <a class="button button-secondary" href="services.html">View Services</a>
+                    </p>
+                </div>
+                <div class="placeholder hero-img" role="img" aria-label="Calm, softly lit treatment room"><span>[ Image placeholder ]</span></div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="featured-heading">
+            <div class="container">
+                <h2 id="featured-heading">Featured Services</h2>
+                <div class="card-grid">
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Calm treatment room with soft lighting"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Initial Consultation</a></h3>
+                    <p>A private one-on-one visit to discuss goals and plan a treatment.</p>
+                    <p class="price">$50.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Initial Consultation</span></button>
+                </article>
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Clean treatment tray ready for an appointment"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Botox Treatment Session</a></h3>
+                    <p>A treatment session scheduled after a consultation.</p>
+                    <p class="price">Starting at $300.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Botox Treatment Session</span></button>
+                </article>
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Gift card with a soft plum ribbon"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="packages.html">Gift Card</a></h3>
+                    <p>Digital gift card for any service.</p>
+                    <p class="price">From $50.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Gift Card</span></button>
+                </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="highlights" aria-label="Why choose SkInjection Tweakments">
+            <div class="container highlight-grid">
+                <div>
+                    <h2 class="highlight-title">Personal Consultations</h2>
+                    <p>Start with a private one-on-one visit</p>
+                </div>
+                <div>
+                    <h2 class="highlight-title">Tailored Treatments</h2>
+                    <p>Botox, fillers, threads, and more</p>
+                </div>
+                <div>
+                    <h2 class="highlight-title">Packages and Gift Cards</h2>
+                    <p>Save with a package or give a gift</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 SkInjection Tweakments</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
     </footer>
-
 </body>
 </html>

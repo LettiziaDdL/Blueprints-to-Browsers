@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Lettizia Diaz de Leon
+        Date: October 18, 2026
+        Purpose: Cart page for reviewing items, changing quantities, and seeing the subtotal.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your SkInjection Tweakments cart.">
+    <title>Cart | SkInjection Tweakments</title>
+
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html" aria-current="page">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-intro" aria-labelledby="page-heading">
+            <div class="container">
+                <h1 id="page-heading">Your Cart</h1>
+                <p>Review your items, change quantities, and see your subtotal. The rows below are sample items until the cart is connected in a later milestone.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Cart items">
+            <div class="container">
+                <div class="table-wrap">
+                    <table class="cart-table">
+                        <caption class="visually-hidden">Items in your cart</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Initial Consultation</th>
+                                <td data-label="Price">$50.00</td>
+                                <td data-label="Quantity">
+                                    <label class="visually-hidden" for="qty-1">Quantity for Initial Consultation</label>
+                                    <input type="number" id="qty-1" name="qty-1" value="1" min="1" max="10">
+                                </td>
+                                <td data-label="Total">$50.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">$50 Gift Card</th>
+                                <td data-label="Price">$50.00</td>
+                                <td data-label="Quantity">
+                                    <label class="visually-hidden" for="qty-2">Quantity for $50 Gift Card</label>
+                                    <input type="number" id="qty-2" name="qty-2" value="1" min="1" max="10">
+                                </td>
+                                <td data-label="Total">$50.00</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="row" colspan="3">Subtotal</th>
+                                <td>$100.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <p class="button-row">
+                    <a class="button button-secondary" href="services.html">Continue Shopping</a>
+                    <a class="button" href="checkout.html">Go to Checkout</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
+    </footer>
+</body>
+</html>

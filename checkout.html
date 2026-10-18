@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Lettizia Diaz de Leon
+        Date: October 18, 2026
+        Purpose: Checkout page with contact information, preferred date and time, and an order summary.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout for SkInjection Tweakments bookings and gift cards.">
+    <title>Checkout | SkInjection Tweakments</title>
+
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html" aria-current="page">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-intro" aria-labelledby="page-heading">
+            <div class="container">
+                <h1 id="page-heading">Checkout</h1>
+                <p>Enter your contact information and preferred date and time. We will contact you to confirm your appointment.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Checkout">
+            <div class="container checkout-grid">
+                <form class="form" action="confirmation.html" method="get">
+                    <fieldset>
+                        <legend>Contact information</legend>
+                        <div class="field">
+                            <label for="co-name">Full name</label>
+                            <input type="text" id="co-name" name="co-name" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label for="co-email">Email address</label>
+                            <input type="email" id="co-email" name="co-email" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="co-phone">Phone number</label>
+                            <input type="tel" id="co-phone" name="co-phone" autocomplete="tel" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Preferred date and time</legend>
+                        <div class="field">
+                            <label for="co-date">Preferred date</label>
+                            <input type="date" id="co-date" name="co-date" required>
+                        </div>
+                        <div class="field">
+                            <label for="co-time">Preferred time</label>
+                            <input type="time" id="co-time" name="co-time" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Payment</legend>
+                        <p>Secure card payment will be added when a payment processor is connected. For now, this step is a placeholder and no payment details are collected.</p>
+                    </fieldset>
+
+                    <button type="submit" class="button">Place Order</button>
+                </form>
+
+                <aside class="summary" aria-labelledby="summary-heading">
+                    <h2 id="summary-heading">Order Summary</h2>
+                    <ul class="summary-list">
+                        <li><span>Initial Consultation</span> <span>$50.00</span></li>
+                        <li><span>$50 Gift Card</span> <span>$50.00</span></li>
+                    </ul>
+                    <p class="summary-total"><span>Subtotal</span> <span>$100.00</span></p>
+                    <p class="help">Sample items shown until the cart is connected.</p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
+    </footer>
+</body>
+</html>

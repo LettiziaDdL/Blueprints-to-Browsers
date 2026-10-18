@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Lettizia Diaz de Leon
+        Date: October 18, 2026
+        Purpose: Consultation request page with a form for a preferred date and time.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request a consultation date and time with SkInjection Tweakments.">
+    <title>Book a Consultation | SkInjection Tweakments</title>
+
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html" aria-current="page">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-intro" aria-labelledby="page-heading">
+            <div class="container">
+                <h1 id="page-heading">Book a Consultation</h1>
+                <p>Tell us when you would like to visit. We will contact you to confirm your appointment.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Consultation request form">
+            <div class="container narrow">
+                <form class="form" action="checkout.html" method="get">
+                    <fieldset>
+                        <legend>Your information</legend>
+                        <div class="field">
+                            <label for="full-name">Full name</label>
+                            <input type="text" id="full-name" name="full-name" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Phone number</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Preferred visit</legend>
+                        <div class="field">
+                            <label for="interest">What are you interested in?</label>
+                            <select id="interest" name="interest">
+                                <option value="consultation">Initial consultation</option>
+                                <option value="botox">Botox</option>
+                                <option value="fillers">Dermal fillers</option>
+                                <option value="threads">Threads</option>
+                                <option value="not-sure">I am not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="visit-date">Preferred date</label>
+                            <input type="date" id="visit-date" name="visit-date" required>
+                        </div>
+                        <div class="field">
+                            <label for="visit-time">Preferred time</label>
+                            <input type="time" id="visit-time" name="visit-time" required>
+                        </div>
+                        <div class="field">
+                            <label for="notes">Anything you would like us to know?</label>
+                            <textarea id="notes" name="notes" rows="4" aria-describedby="notes-help"></textarea>
+                            <p class="help" id="notes-help">Please do not include health history here. We discuss that privately during your consultation.</p>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="button">Continue to Checkout</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
+    </footer>
+</body>
+</html>

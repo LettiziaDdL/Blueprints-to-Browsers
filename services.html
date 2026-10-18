@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Lettizia Diaz de Leon
+        Date: October 18, 2026
+        Purpose: Service catalog page listing all consultations and treatments.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse consultations and injectable treatments from SkInjection Tweakments.">
+    <title>Services | SkInjection Tweakments</title>
+
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" aria-current="page">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-intro" aria-labelledby="page-heading">
+            <div class="container">
+                <h1 id="page-heading">Services</h1>
+                <p>Every treatment begins with a consultation, so your plan fits your goals. Prices shown are starting prices and are sample values for now.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Service list">
+            <div class="container">
+                <!-- Each article is one item that uses the product data model fields (name, description, price, image). -->
+                <div class="card-grid">
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Calm treatment room with soft lighting"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Initial Consultation</a></h3>
+                    <p>A private one-on-one visit to discuss goals and plan a treatment.</p>
+                    <p class="price">$50.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Initial Consultation</span></button>
+                </article>
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Clean treatment tray ready for an appointment"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Botox Treatment Session</a></h3>
+                    <p>A treatment session scheduled after a consultation.</p>
+                    <p class="price">Starting at $300.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Botox Treatment Session</span></button>
+                </article>
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Soft towels and a treatment chair in a quiet room"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Dermal Filler Treatment</a></h3>
+                    <p>Subtle volume and contour, planned together during your consultation.</p>
+                    <p class="price">Starting at $600.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Dermal Filler Treatment</span></button>
+                </article>
+                <article class="card">
+                    <div class="placeholder card-img" role="img" aria-label="Neatly arranged sterile supplies on a clean tray"><span>[ Image placeholder ]</span></div>
+                    <h3><a href="service.html">Thread Treatment</a></h3>
+                    <p>A gentle lift with threads, planned after a consultation.</p>
+                    <p class="price">Starting at $800.00</p>
+                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Thread Treatment</span></button>
+                </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
+    </footer>
+</body>
+</html>
