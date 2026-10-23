@@ -3,8 +3,10 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 18, 2026
-        Purpose: Checkout page with contact information, preferred date and time, and an order summary.
+        Date: October 22, 2026
+        Purpose: Checkout page with a shipping form, a payment form with a coupon code,
+                 and an order summary. JavaScript validates the required fields and
+                 applies percentage discounts from valid coupon codes.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +15,11 @@
 
     <!-- External stylesheet with the brand theme and responsive layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Product data, shared validation functions, and checkout logic -->
+    <script src="js/products.js" defer></script>
+    <script src="js/validation.js" defer></script>
+    <script src="js/checkout.js" defer></script>
 </head>
 
 <body>
@@ -39,56 +46,157 @@
         <section class="page-intro" aria-labelledby="page-heading">
             <div class="container">
                 <h1 id="page-heading">Checkout</h1>
-                <p>Enter your contact information and preferred date and time. We will contact you to confirm your appointment.</p>
+                <p>Enter your shipping and payment details to complete your order. Gift cards are mailed to the shipping address, and we will contact you to schedule any appointments.</p>
             </div>
         </section>
 
         <section class="section" aria-label="Checkout">
             <div class="container checkout-grid">
-                <form class="form" action="confirmation.html" method="get">
+                <form class="form" id="checkout-form" novalidate>
+                    <p>Fields marked with <span aria-hidden="true">*</span><span class="visually-hidden">an asterisk</span> are required.</p>
+
+                    <!-- Shipping form -->
                     <fieldset>
-                        <legend>Contact information</legend>
+                        <legend>Shipping information</legend>
                         <div class="field">
-                            <label for="co-name">Full name</label>
-                            <input type="text" id="co-name" name="co-name" autocomplete="name" required>
+                            <label for="ship-name">Full name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="ship-name" name="ship-name" autocomplete="shipping name" required aria-describedby="ship-name-error">
+                            <p class="error" id="ship-name-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="co-email">Email address</label>
-                            <input type="email" id="co-email" name="co-email" autocomplete="email" required>
+                            <label for="ship-street">Street address <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="ship-street" name="ship-street" autocomplete="shipping street-address" required aria-describedby="ship-street-error">
+                            <p class="error" id="ship-street-error" aria-live="polite"></p>
+                        </div>
+                        <div class="field-row">
+                        <div class="field">
+                            <label for="ship-city">City <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="ship-city" name="ship-city" autocomplete="shipping address-level2" required aria-describedby="ship-city-error">
+                            <p class="error" id="ship-city-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="co-phone">Phone number</label>
-                            <input type="tel" id="co-phone" name="co-phone" autocomplete="tel" required>
+                            <label for="ship-state">State <span class="required" aria-hidden="true">*</span></label>
+                            <select id="ship-state" name="ship-state" autocomplete="shipping address-level1" required aria-describedby="ship-state-error">
+                                <option value="">Select a state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                            <p class="error" id="ship-state-error" aria-live="polite"></p>
+                        </div>
+                        </div>
+                        <div class="field-row">
+                        <div class="field">
+                            <label for="ship-zip">ZIP code <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="ship-zip" name="ship-zip" inputmode="numeric" autocomplete="shipping postal-code" maxlength="10" required aria-describedby="ship-zip-error">
+                            <p class="error" id="ship-zip-error" aria-live="polite"></p>
+                        </div>
+                        <div class="field">
+                            <label for="ship-phone">Phone number <span class="required" aria-hidden="true">*</span></label>
+                            <input type="tel" id="ship-phone" name="ship-phone" autocomplete="tel" required aria-describedby="ship-phone-error">
+                            <p class="error" id="ship-phone-error" aria-live="polite"></p>
+                        </div>
                         </div>
                     </fieldset>
 
+                    <!-- Purchase form -->
                     <fieldset>
-                        <legend>Preferred date and time</legend>
+                        <legend>Payment information</legend>
+                        <p class="notice">This is a class project. Please do not enter real card details. You can test with the sample card number 4242 4242 4242 4242.</p>
                         <div class="field">
-                            <label for="co-date">Preferred date</label>
-                            <input type="date" id="co-date" name="co-date" required>
+                            <label for="card-name">Cardholder name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="card-name" name="card-name" autocomplete="cc-name" required aria-describedby="card-name-error">
+                            <p class="error" id="card-name-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="co-time">Preferred time</label>
-                            <input type="time" id="co-time" name="co-time" required>
+                            <label for="card-number">Credit card number <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="card-number" name="card-number" inputmode="numeric" autocomplete="cc-number" maxlength="23" required aria-describedby="card-number-error">
+                            <p class="error" id="card-number-error" aria-live="polite"></p>
+                        </div>
+                        <div class="field-row">
+                        <div class="field">
+                            <label for="card-expiration">Expiration date <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="card-expiration" name="card-expiration" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" required aria-describedby="card-expiration-help card-expiration-error">
+                            <p class="help" id="card-expiration-help">Format: MM/YY</p>
+                            <p class="error" id="card-expiration-error" aria-live="polite"></p>
+                        </div>
+                        <div class="field">
+                            <label for="card-cvv">Security code <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="card-cvv" name="card-cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="4" required aria-describedby="card-cvv-help card-cvv-error">
+                            <p class="help" id="card-cvv-help">3 or 4 digits on your card</p>
+                            <p class="error" id="card-cvv-error" aria-live="polite"></p>
+                        </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="coupon">Coupon code</label>
+                            <div class="coupon-row">
+                                <input type="text" id="coupon" name="coupon" autocomplete="off" aria-describedby="coupon-message">
+                                <button type="button" id="apply-coupon" class="button button-small button-secondary">Apply</button>
+                            </div>
+                            <p class="help" id="coupon-message" aria-live="polite"></p>
                         </div>
                     </fieldset>
 
-                    <fieldset>
-                        <legend>Payment</legend>
-                        <p>Secure card payment will be added when a payment processor is connected. For now, this step is a placeholder and no payment details are collected.</p>
-                    </fieldset>
-
+                    <p id="checkout-status" class="form-status" role="status" aria-live="polite"></p>
                     <button type="submit" class="button">Place Order</button>
                 </form>
 
                 <aside class="summary" aria-labelledby="summary-heading">
                     <h2 id="summary-heading">Order Summary</h2>
-                    <ul class="summary-list">
-                        <li><span>Initial Consultation</span> <span>$50.00</span></li>
-                        <li><span>$50 Gift Card</span> <span>$50.00</span></li>
-                    </ul>
-                    <p class="summary-total"><span>Subtotal</span> <span>$100.00</span></p>
+                    <!-- Items are filled in by js/checkout.js -->
+                    <ul class="summary-list" id="summary-list"></ul>
+                    <p class="summary-line"><span>Subtotal</span> <span id="summary-subtotal">$0.00</span></p>
+                    <p class="summary-line discount-line" id="discount-row" hidden><span id="discount-label">Discount</span> <span id="summary-discount">-$0.00</span></p>
+                    <p class="summary-total"><span>Total</span> <span id="summary-total">$0.00</span></p>
                     <p class="help">Sample items shown until the cart is connected.</p>
                 </aside>
             </div>

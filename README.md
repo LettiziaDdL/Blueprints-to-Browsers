@@ -19,5 +19,17 @@ Home, Services, Service Detail, Packages and Gift Cards, Book a Consultation, Ca
 | Week 5 (Nov 9 to Nov 13, 2026) | Checkout and Booking | Checkout form with order summary and preferred date and time, a consultation request form, and a confirmation page. Payment will use a placeholder until a third-party processor is added. | Build checkout form and order summary (4 hrs); Add form validation (3 hrs); Build consultation request form (3 hrs); Build confirmation page (2 hrs) | Nov 13, 2026 |
 | Week 6 (Nov 16 to Nov 20, 2026) | Accessibility, Testing, and Launch Prep | Accessibility checks, cross-browser testing, bug fixes, and publishing the site. | Accessibility audit (contrast, keyboard, alt text) (3 hrs); Cross-browser and mobile testing (3 hrs); Fix bugs and polish (3 hrs); Publish site and update documentation (1 hr) | Nov 20, 2026 |
 
+## Project Structure
+- HTML pages are in the main folder.
+- `styles.css` holds the brand theme and responsive layout.
+- `js/products.js` holds the product data model and the loop that displays product cards.
+- `js/validation.js` holds shared input validation functions used by every form.
+- `js/contact.js` validates the Contact page form.
+- `js/checkout.js` builds the order summary, applies coupon codes, and validates checkout.
+
+## Milestone Updates
+- **2.6 Style and Substance:** Built the semantic HTML pages and external stylesheet.
+- **3.6 Make It Click:** Services page now loads 12 products from the data model with a JavaScript loop. Added a validated contact form, shipping and payment forms on the checkout page, and a coupon code discount (TWEAK10, GIFT15, FIRSTVISIT).
+
 ## Author
 Lettizia Diaz de Leon

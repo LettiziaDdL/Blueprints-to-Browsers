@@ -1,9 +1,10 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 18, 2026
+    Date: October 22, 2026
     Purpose: External stylesheet for SkInjection Tweakments. Applies the brand theme
     (plum and cream palette, Georgia headings, Arial body text) and a mobile-first
-    responsive layout with breakpoints at 768px and 1024px.
+    responsive layout with breakpoints at 768px and 1024px. Also styles form
+    validation messages, the coupon field, and product category tags.
 */
 
 /* ==========================================
@@ -457,6 +458,106 @@ summary {
 details p { margin: 0.6rem 0 0; }
 
 /* ==========================================
+   FORM VALIDATION MESSAGES
+   ------------------------------------------
+   Error red (#A4161A) passes contrast on
+   white. Invalid fields also get a thicker
+   border so color is not the only signal.
+========================================== */
+textarea { min-height: 8rem; resize: vertical; }
+
+.required { color: #A4161A; }
+
+.error {
+    color: #A4161A;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0.35rem 0 0;
+}
+
+.error:empty { display: none; }
+
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+    border: 2px solid #A4161A;
+    background-color: #FFF5F5;
+}
+
+.help.success { color: #2E6B3F; font-weight: bold; }
+
+.form-status:empty { display: none; }
+
+.form-status {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.error-status {
+    background-color: #FFF5F5;
+    color: #A4161A;
+    border-left: 5px solid #A4161A;
+}
+
+.success-status {
+    background-color: var(--sage);
+    color: #2E6B3F;
+    border-left: 5px solid #2E6B3F;
+}
+
+.notice {
+    background-color: var(--blush);
+    border-left: 5px solid var(--rose);
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* Two fields side by side on larger screens */
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1rem;
+}
+
+/* Coupon input with its Apply button */
+.coupon-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.coupon-row input { flex: 1; }
+
+/* Order summary discount line */
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.3rem 0;
+}
+
+.discount-line { color: #2E6B3F; font-weight: bold; }
+.discount-line[hidden] { display: none; }
+
+/* ==========================================
+   PRODUCT CATEGORY TAG
+========================================== */
+.category-tag {
+    display: inline-block;
+    align-self: flex-start;
+    background-color: var(--blush);
+    color: var(--plum);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+}
+
+/* ==========================================
    FOOTER
 ========================================== */
 .site-footer {
@@ -524,6 +625,7 @@ details p { margin: 0.6rem 0 0; }
     .highlight-grid { grid-template-columns: repeat(3, 1fr); }
     .detail-grid { grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
     .checkout-grid { grid-template-columns: 2fr 1fr; gap: 2rem; }
+    .field-row { grid-template-columns: 1fr 1fr; }
 
     .footer-inner {
         flex-direction: row;
