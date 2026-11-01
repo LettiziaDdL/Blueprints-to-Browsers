@@ -22,14 +22,17 @@ Home, Services, Service Detail, Packages and Gift Cards, Book a Consultation, Ca
 ## Project Structure
 - HTML pages are in the main folder.
 - `styles.css` holds the brand theme and responsive layout.
-- `js/products.js` holds the product data model and the loop that displays product cards.
+- `js/products.js` holds the product data model (including starting stock) and the loop that displays product cards on the Home, Services, Packages, and Service Detail pages.
+- `js/cart.js` runs the shopping cart and inventory: it saves the cart and stock in localStorage, updates the cart count in the menu, shows add-to-cart feedback and the Out of Stock tooltip, and builds the Cart page.
 - `js/validation.js` holds shared input validation functions used by every form.
 - `js/contact.js` validates the Contact page form.
-- `js/checkout.js` builds the order summary, applies coupon codes, and validates checkout.
+- `js/checkout.js` builds the order summary from the saved cart, applies coupon codes, validates checkout, and saves the finished order.
+- `js/confirmation.js` shows the order number, items, and total on the Confirmation page.
 
 ## Milestone Updates
 - **2.6 Style and Substance:** Built the semantic HTML pages and external stylesheet.
 - **3.6 Make It Click:** Services page now loads 12 products from the data model with a JavaScript loop. Added a validated contact form, shipping and payment forms on the checkout page, and a coupon code discount (TWEAK10, GIFT15, FIRSTVISIT).
+- **4.7 Smart Cart:** Added a working shopping cart saved in localStorage. Every Add to Cart button now works, the Cart page lets customers change quantities, remove items, and clear the cart, and the menu shows a live cart count. Each product has a stock count that goes down when added and back up when removed, and sold-out items are greyed out, cannot be added, and show an Out of Stock tooltip. Checkout now uses the real cart, and the Confirmation page shows the order number, items, and total. The Home and Packages pages now build their cards from the product data, which grew to 16 items.
 
 ## Author
 Lettizia Diaz de Leon

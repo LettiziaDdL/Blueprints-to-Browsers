@@ -3,7 +3,7 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 18, 2026
+        Date: October 31, 2026
         Purpose: Store homepage for SkInjection Tweakments. Introduces the brand and links to services, packages, and booking.
     -->
     <meta charset="UTF-8">
@@ -13,6 +13,10 @@
 
     <!-- External stylesheet with the brand theme and responsive layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
@@ -53,28 +57,9 @@
         <section class="section" aria-labelledby="featured-heading">
             <div class="container">
                 <h2 id="featured-heading">Featured Services</h2>
-                <div class="card-grid">
-                <article class="card">
-                    <div class="placeholder card-img" role="img" aria-label="Calm treatment room with soft lighting"><span>[ Image placeholder ]</span></div>
-                    <h3><a href="service.html">Initial Consultation</a></h3>
-                    <p>A private one-on-one visit to discuss goals and plan a treatment.</p>
-                    <p class="price">$50.00</p>
-                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Initial Consultation</span></button>
-                </article>
-                <article class="card">
-                    <div class="placeholder card-img" role="img" aria-label="Clean treatment tray ready for an appointment"><span>[ Image placeholder ]</span></div>
-                    <h3><a href="service.html">Botox Treatment Session</a></h3>
-                    <p>A treatment session scheduled after a consultation.</p>
-                    <p class="price">Starting at $300.00</p>
-                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Botox Treatment Session</span></button>
-                </article>
-                <article class="card">
-                    <div class="placeholder card-img" role="img" aria-label="Gift card with a soft plum ribbon"><span>[ Image placeholder ]</span></div>
-                    <h3><a href="packages.html">Gift Card</a></h3>
-                    <p>Digital gift card for any service.</p>
-                    <p class="price">From $50.00</p>
-                    <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Gift Card</span></button>
-                </article>
+                <!-- Featured product cards are built from the product data in js/products.js -->
+                <div class="card-grid" data-product-grid data-ids="consult,botox,gift-50">
+                    <noscript><p>Please turn on JavaScript to view featured services.</p></noscript>
                 </div>
             </div>
         </section>

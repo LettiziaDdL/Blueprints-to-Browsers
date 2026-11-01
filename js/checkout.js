@@ -1,23 +1,19 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 22, 2026
-    Purpose: Runs the Checkout page. Builds the order summary from the product data,
-             applies percentage discounts from valid coupon codes to specific products
-             or the whole order, and validates the shipping and payment fields before
-             sending the customer to the confirmation page.
+    Date: October 31, 2026
+    Purpose: Runs the Checkout page. Builds the order summary from the shopping cart
+             saved in localStorage, applies percentage discounts from valid coupon
+             codes, validates the shipping and payment fields, and saves the finished
+             order so the confirmation page can show it before the cart is emptied.
 */
 
 /* ==========================================
-   SAMPLE CART
+   CART ITEMS
    ------------------------------------------
-   The shopping cart is planned for Week 4,
-   so these sample items stand in for it.
+   Loaded from the cart saved by js/cart.js.
 ========================================== */
-const cartItems = [
-    { id: "consult", quantity: 1 },
-    { id: "botox", quantity: 1 },
-    { id: "gift-100", quantity: 1 }
-];
+const cartItems = getCart();
+const ORDER_KEY = "sktLastOrder";
 
 /* ==========================================
    COUPON CODES
@@ -93,8 +89,13 @@ function renderSummary() {
     let discount = 0;
     let listHTML = "";
 
+    if (cartItems.length === 0) {
+        summaryList.innerHTML = '<li>Your cart is empty. <a href="services.html">Browse services</a></li>';
+    }
+
     cartItems.forEach(function(item) {
         const product = findProduct(item.id);
+        if (!product) return;
         const lineTotal = product.price * item.quantity;
 
         subtotal += lineTotal;
@@ -103,7 +104,9 @@ function renderSummary() {
         listHTML += `<li><span>${product.name}${item.quantity > 1 ? " x" + item.quantity : ""}</span> <span>${formatMoney(lineTotal)}</span></li>`;
     });
 
-    summaryList.innerHTML = listHTML;
+    if (cartItems.length > 0) {
+        summaryList.innerHTML = listHTML;
+    }
     subtotalOutput.textContent = formatMoney(subtotal);
 
     if (discount > 0) {
@@ -116,6 +119,8 @@ function renderSummary() {
     }
 
     totalOutput.textContent = formatMoney(subtotal - discount);
+
+    return { subtotal: subtotal, discount: discount, total: subtotal - discount };
 }
 
 /* ==========================================
@@ -167,6 +172,13 @@ clearErrorsOnInput(checkoutForm);
 checkoutForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
+    // An order needs at least one item
+    if (cartItems.length === 0) {
+        checkoutStatus.className = "form-status error-status";
+        checkoutStatus.innerHTML = 'Your cart is empty. <a href="services.html">Add a service</a> before placing an order.';
+        return;
+    }
+
     const errorCount = validateFields([
         // Shipping information
         { field: document.getElementById("ship-name"), required: true, label: "Full name",
@@ -199,7 +211,30 @@ checkoutForm.addEventListener("submit", function(event) {
         return;
     }
 
-    // Everything is valid. No card details are saved or sent anywhere.
+    // Everything is valid. Save the order details for the confirmation page.
+    // No card details are saved or sent anywhere.
+    const totals = renderSummary();
+
+    const order = {
+        number: "SKT-" + String(Date.now()).slice(-6),
+        date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+        name: document.getElementById("ship-name").value.trim(),
+        items: cartItems.map(function(item) {
+            const product = findProduct(item.id);
+            return { name: product.name, price: product.price, quantity: item.quantity };
+        }),
+        itemCount: cartItems.reduce(function(sum, item) { return sum + item.quantity; }, 0),
+        subtotal: totals.subtotal,
+        discount: totals.discount,
+        coupon: activeCoupon ? activeCoupon.code : "",
+        total: totals.total
+    };
+
+    localStorage.setItem(ORDER_KEY, JSON.stringify(order));
+
+    // The items were purchased, so empty the cart (stock stays lowered)
+    completeOrder();
+
     checkoutStatus.className = "form-status success-status";
     checkoutStatus.textContent = "Order placed! Taking you to your confirmation...";
     window.location.href = "confirmation.html";

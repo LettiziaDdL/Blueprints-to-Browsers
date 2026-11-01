@@ -3,10 +3,11 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 22, 2026
+        Date: October 31, 2026
         Purpose: Checkout page with a shipping form, a payment form with a coupon code,
-                 and an order summary. JavaScript validates the required fields and
-                 applies percentage discounts from valid coupon codes.
+                 and an order summary built from the saved shopping cart. JavaScript
+                 validates the required fields, applies percentage discounts from valid
+                 coupon codes, and sends the finished order to the confirmation page.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
 
     <!-- Product data, shared validation functions, and checkout logic -->
     <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
     <script src="js/validation.js" defer></script>
     <script src="js/checkout.js" defer></script>
 </head>
@@ -197,7 +199,7 @@
                     <p class="summary-line"><span>Subtotal</span> <span id="summary-subtotal">$0.00</span></p>
                     <p class="summary-line discount-line" id="discount-row" hidden><span id="discount-label">Discount</span> <span id="summary-discount">-$0.00</span></p>
                     <p class="summary-total"><span>Total</span> <span id="summary-total">$0.00</span></p>
-                    <p class="help">Sample items shown until the cart is connected.</p>
+                    <p class="help"><a href="cart.html">Edit your cart</a></p>
                 </aside>
             </div>
         </section>

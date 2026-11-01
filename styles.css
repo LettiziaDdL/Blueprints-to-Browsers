@@ -1,10 +1,12 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 22, 2026
+    Date: October 31, 2026
     Purpose: External stylesheet for SkInjection Tweakments. Applies the brand theme
     (plum and cream palette, Georgia headings, Arial body text) and a mobile-first
     responsive layout with breakpoints at 768px and 1024px. Also styles form
-    validation messages, the coupon field, and product category tags.
+    validation messages, the coupon field, and product category tags, plus the
+    shopping cart, stock labels, Out of Stock tooltip, add-to-cart feedback, and
+    order confirmation details.
 */
 
 /* ==========================================
@@ -595,6 +597,191 @@ textarea[aria-invalid="true"] {
 .site-footer a:focus-visible { outline-color: var(--white); }
 
 /* ==========================================
+   SHOPPING CART AND INVENTORY
+========================================== */
+
+/* Elements hidden with the hidden attribute stay hidden even if they are buttons */
+[hidden] { display: none !important; }
+
+/* Stock label on product cards */
+.stock {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #2E6B3F;
+}
+
+/* Sold-out product: greyed out, cannot be added */
+.out-of-stock {
+    cursor: not-allowed;
+}
+
+.card.out-of-stock {
+    background-color: #F1EEF0;
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.out-of-stock .stock { color: #A4161A; }
+
+.out-of-stock .button:disabled {
+    pointer-events: none; /* lets the tooltip follow the mouse over the button */
+}
+
+.button:disabled,
+.button:disabled:hover {
+    background-color: #8C8590;
+    cursor: not-allowed;
+}
+
+.stock-wrap { margin-bottom: 1rem; }
+
+/* Tooltip that follows the cursor over sold-out items */
+.stock-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    background-color: #A4161A;
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: bold;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.stock-tooltip.show { opacity: 1; }
+
+/* Add-to-cart feedback: green button */
+.button.added,
+.button.added:hover {
+    background-color: #2E6B3F;
+}
+
+/* Add-to-cart feedback: cart count pulse in the menu */
+.cart-count {
+    display: inline-block;
+    border-radius: 999px;
+}
+
+.cart-count.pulse {
+    animation: cart-pulse 0.6s ease;
+}
+
+@keyframes cart-pulse {
+    0% { transform: scale(1); background-color: transparent; }
+    40% { transform: scale(1.5); background-color: var(--gold); color: var(--ink); }
+    100% { transform: scale(1); background-color: transparent; }
+}
+
+/* Add-to-cart feedback: notification message */
+.cart-toast {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 900;
+    max-width: 26rem;
+    margin: 0 auto;
+    padding: 0.9rem 1rem;
+    border-left: 6px solid var(--gold);
+    border-radius: var(--radius);
+    background-color: var(--plum);
+    color: var(--white);
+    box-shadow: 0 6px 18px rgba(43, 36, 48, 0.3);
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.cart-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.cart-toast a { color: var(--white); font-weight: bold; }
+
+/* Outline button for Clear Cart */
+.button-outline {
+    background-color: var(--white);
+    color: var(--plum);
+    border: 2px solid var(--plum);
+}
+
+.button-outline:hover { background-color: var(--blush); color: var(--plum); }
+
+.button-outline:disabled,
+.button-outline:disabled:hover {
+    background-color: var(--white);
+    color: #8C8590;
+    border-color: #C9C2C7;
+}
+
+/* Quantity controls in the cart */
+.qty-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.qty-button {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--plum);
+    border-radius: 6px;
+    background-color: var(--white);
+    color: var(--plum);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.qty-button:hover { background-color: var(--blush); }
+
+.qty-button:disabled {
+    border-color: #C9C2C7;
+    color: #8C8590;
+    cursor: not-allowed;
+    background-color: var(--white);
+}
+
+.cart-table .qty-input {
+    width: 4rem;
+    min-height: 44px;
+    text-align: center;
+}
+
+/* Remove link-style button */
+.link-button {
+    min-height: 44px;
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    background: none;
+    color: #A4161A;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link-button:hover { color: var(--ink); }
+
+/* Order details on the confirmation page */
+.order-details {
+    background-color: var(--blush);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.order-details h2 { margin-bottom: 0.25rem; }
+
+.order-meta { font-size: 0.95rem; }
+
+/* ==========================================
    TABLET BREAKPOINT (768px AND UP)
    ------------------------------------------
    Header on one row, two-column grids,
@@ -669,6 +856,8 @@ textarea[aria-invalid="true"] {
         align-items: center;
         border-bottom: 0;
     }
+
+    .cart-table td.remove-cell { justify-content: flex-end; }
 
     .cart-table td[data-label]::before {
         content: attr(data-label);

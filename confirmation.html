@@ -3,8 +3,10 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 18, 2026
-        Purpose: Confirmation page shown after an order or booking request.
+        Date: October 31, 2026
+        Purpose: Confirmation page shown after an order or booking request. After a
+                 checkout, js/confirmation.js shows the order number, the items
+                 purchased, and the order total.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +15,11 @@
 
     <!-- External stylesheet with the brand theme and responsive layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/confirmation.js" defer></script>
 </head>
 
 <body>
@@ -41,6 +48,16 @@
                 <div class="confirm-box">
                     <h1 id="page-heading">Thank you!</h1>
                     <p>Your order or booking request has been received. A confirmation email is on its way.</p>
+
+                    <!-- Order details are filled in by js/confirmation.js after checkout -->
+                    <section class="order-details" id="order-details" aria-labelledby="order-heading" hidden>
+                        <h2 id="order-heading">Order <span id="order-number"></span></h2>
+                        <p class="order-meta" id="order-meta"></p>
+                        <ul class="summary-list" id="order-items"></ul>
+                        <p class="summary-line"><span>Subtotal</span> <span id="order-subtotal"></span></p>
+                        <p class="summary-line discount-line" id="order-discount-row" hidden><span id="order-discount-label">Discount</span> <span id="order-discount"></span></p>
+                        <p class="summary-total"><span>Total paid</span> <span id="order-total"></span></p>
+                    </section>
 
                     <h2>What happens next</h2>
                     <ol>

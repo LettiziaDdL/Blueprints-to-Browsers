@@ -3,8 +3,10 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 18, 2026
-        Purpose: Cart page for reviewing items, changing quantities, and seeing the subtotal.
+        Date: October 31, 2026
+        Purpose: Cart page for reviewing items, changing quantities, removing items,
+                 clearing the cart, and seeing the subtotal. The table is built by
+                 js/cart.js from the cart saved in localStorage.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +15,10 @@
 
     <!-- External stylesheet with the brand theme and responsive layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
@@ -39,13 +45,20 @@
         <section class="page-intro" aria-labelledby="page-heading">
             <div class="container">
                 <h1 id="page-heading">Your Cart</h1>
-                <p>Review your items, change quantities, and see your subtotal. The rows below are sample items until the cart is connected in a later milestone.</p>
+                <p>Review your items, change quantities, and see your subtotal. Your cart is saved on this device, so it will still be here if you refresh the page or come back later.</p>
             </div>
         </section>
 
         <section class="section" aria-label="Cart items">
             <div class="container">
-                <div class="table-wrap">
+                <!-- Shown when the cart is empty -->
+                <div id="cart-empty" class="notice" hidden>
+                    <p>Your cart is empty.</p>
+                    <p><a href="services.html">Browse services, packages, and gift cards</a></p>
+                </div>
+
+                <!-- Cart rows are built by js/cart.js -->
+                <div class="table-wrap" id="cart-table-wrap">
                     <table class="cart-table">
                         <caption class="visually-hidden">Items in your cart</caption>
                         <thead>
@@ -54,40 +67,23 @@
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
+                                <th scope="col"><span class="visually-hidden">Remove</span></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Initial Consultation</th>
-                                <td data-label="Price">$50.00</td>
-                                <td data-label="Quantity">
-                                    <label class="visually-hidden" for="qty-1">Quantity for Initial Consultation</label>
-                                    <input type="number" id="qty-1" name="qty-1" value="1" min="1" max="10">
-                                </td>
-                                <td data-label="Total">$50.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">$50 Gift Card</th>
-                                <td data-label="Price">$50.00</td>
-                                <td data-label="Quantity">
-                                    <label class="visually-hidden" for="qty-2">Quantity for $50 Gift Card</label>
-                                    <input type="number" id="qty-2" name="qty-2" value="1" min="1" max="10">
-                                </td>
-                                <td data-label="Total">$50.00</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="cart-body"></tbody>
                         <tfoot>
                             <tr>
-                                <th scope="row" colspan="3">Subtotal</th>
-                                <td>$100.00</td>
+                                <th scope="row" colspan="3">Subtotal (<span id="cart-item-count">0 items</span>)</th>
+                                <td colspan="2" id="cart-subtotal" aria-live="polite">$0.00</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
 
                 <p class="button-row">
+                    <button type="button" id="clear-cart" class="button button-outline">Clear Cart</button>
                     <a class="button button-secondary" href="services.html">Continue Shopping</a>
-                    <a class="button" href="checkout.html">Go to Checkout</a>
+                    <a class="button" id="checkout-link" href="checkout.html">Proceed to Checkout</a>
                 </p>
             </div>
         </section>

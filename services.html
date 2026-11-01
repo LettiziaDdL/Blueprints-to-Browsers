@@ -3,10 +3,11 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 22, 2026
+        Date: October 31, 2026
         Purpose: Service catalog page. JavaScript loops through the product data in
                  js/products.js to display every consultation, treatment, package, and
-                 gift card as a product card.
+                 gift card as a product card with its available stock and a working
+                 Add to Cart button.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
 
     <!-- Product data and display loop -->
     <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
@@ -44,7 +46,7 @@
         <section class="page-intro" aria-labelledby="page-heading">
             <div class="container">
                 <h1 id="page-heading">Services</h1>
-                <p>Browse consultations, treatments, packages, and gift cards. Every treatment begins with a consultation, so your plan fits your goals. Prices shown are starting prices and are sample values for now.</p>
+                <p>Browse consultations, treatments, packages, and gift cards. Every treatment begins with a consultation, so your plan fits your goals. Prices shown are starting prices, and prices and availability are sample values for now.</p>
             </div>
         </section>
 
@@ -52,7 +54,7 @@
             <div class="container">
                 <!-- Product cards are built by the loop in js/products.js using the data model fields (name, category, description, price, image). -->
                 <p id="product-count" class="help" aria-live="polite"></p>
-                <div class="card-grid" id="product-grid">
+                <div class="card-grid" id="product-grid" data-product-grid="all">
                     <noscript><p>Please turn on JavaScript to view our services.</p></noscript>
                 </div>
             </div>

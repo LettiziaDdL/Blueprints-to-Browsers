@@ -3,7 +3,7 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 18, 2026
+        Date: October 31, 2026
         Purpose: Packages and gift cards page listing treatment packages and digital gift cards.
     -->
     <meta charset="UTF-8">
@@ -13,6 +13,10 @@
 
     <!-- External stylesheet with the brand theme and responsive layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
@@ -46,57 +50,19 @@
         <section class="section" aria-labelledby="packages-heading">
             <div class="container">
                 <h2 id="packages-heading">Treatment Packages</h2>
-                <div class="card-grid">
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Treatment room with a neatly folded towel"><span>[ Image placeholder ]</span></div>
-                        <h3>Consultation and Botox Package</h3>
-                        <p>An initial consultation plus one Botox treatment session.</p>
-                        <p class="price">$330.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Consultation and Botox Package</span></button>
-                    </article>
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Two folded towels on a treatment chair"><span>[ Image placeholder ]</span></div>
-                        <h3>Botox Refresh Package</h3>
-                        <p>Two Botox treatment sessions, booked after your consultation.</p>
-                        <p class="price">$560.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Botox Refresh Package</span></button>
-                    </article>
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Soft lighting over a treatment chair"><span>[ Image placeholder ]</span></div>
-                        <h3>Filler and Thread Package</h3>
-                        <p>One dermal filler treatment and one thread treatment.</p>
-                        <p class="price">$1,300.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> Filler and Thread Package</span></button>
-                    </article>
+                <!-- Package cards are built from the product data in js/products.js -->
+                <div class="card-grid" data-product-grid data-category="Package">
+                    <noscript><p>Please turn on JavaScript to view our packages.</p></noscript>
                 </div>
             </div>
         </section>
 
         <section class="section section-blush" aria-labelledby="gift-heading">
             <div class="container">
-                <h2 id="gift-heading">Digital Gift Cards</h2>
-                <div class="card-grid">
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Gift card with a plum ribbon"><span>[ Image placeholder ]</span></div>
-                        <h3>$50 Gift Card</h3>
-                        <p>Delivered by email and good for any service.</p>
-                        <p class="price">$50.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> $50 Gift Card</span></button>
-                    </article>
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Gift card with a rose ribbon"><span>[ Image placeholder ]</span></div>
-                        <h3>$100 Gift Card</h3>
-                        <p>Delivered by email and good for any service.</p>
-                        <p class="price">$100.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> $100 Gift Card</span></button>
-                    </article>
-                    <article class="card">
-                        <div class="placeholder card-img" role="img" aria-label="Gift card with a gold ribbon"><span>[ Image placeholder ]</span></div>
-                        <h3>$200 Gift Card</h3>
-                        <p>Delivered by email and good for any service.</p>
-                        <p class="price">$200.00</p>
-                        <button type="button" class="button button-small">Add to Cart<span class="visually-hidden"> $200 Gift Card</span></button>
-                    </article>
+                <h2 id="gift-heading">Gift Cards</h2>
+                <!-- Gift card cards are built from the product data in js/products.js -->
+                <div class="card-grid" data-product-grid data-category="Gift Card">
+                    <noscript><p>Please turn on JavaScript to view our gift cards.</p></noscript>
                 </div>
             </div>
         </section>
