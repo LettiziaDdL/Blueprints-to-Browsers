@@ -1,9 +1,10 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 31, 2026
+    Date: November 4, 2026
     Purpose: Runs the Confirmation page. Reads the order saved by js/checkout.js and
              shows the order number, date, items purchased, any discount, and the
-             total so the customer can review what they just ordered.
+             total so the customer can review what they just ordered, plus the
+             requested consultation date and time when there is one.
 */
 
 /* ==========================================
@@ -39,5 +40,12 @@ if (lastOrder) {
     }
 
     document.getElementById("order-total").textContent = formatMoney(lastOrder.total);
+
+    // Requested consultation date and time from the Book page
+    if (lastOrder.visit) {
+        const visitLine = document.getElementById("order-visit");
+        visitLine.innerHTML = `<strong>Requested visit:</strong> ${lastOrder.visit}`;
+        visitLine.hidden = false;
+    }
     document.getElementById("order-details").hidden = false;
 }

@@ -1,12 +1,13 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 31, 2026
+    Date: November 4, 2026
     Purpose: External stylesheet for SkInjection Tweakments. Applies the brand theme
     (plum and cream palette, Georgia headings, Arial body text) and a mobile-first
     responsive layout with breakpoints at 768px and 1024px. Also styles form
     validation messages, the coupon field, and product category tags, plus the
-    shopping cart, stock labels, Out of Stock tooltip, add-to-cart feedback, and
-    order confirmation details.
+    shopping cart, stock labels, Out of Stock tooltip, add-to-cart feedback,
+    order confirmation details, the preferred visit box, related items on the
+    Service Detail template, and the Network Connection Test page.
 */
 
 /* ==========================================
@@ -873,4 +874,92 @@ textarea[aria-invalid="true"] {
 /* Respect the reader's motion settings */
 @media (prefers-reduced-motion: reduce) {
     * { scroll-behavior: auto; transition: none; animation: none; }
+}
+
+/* ==========================================
+   NETWORK CONNECTION TEST PAGE
+   ------------------------------------------
+   Sage for a recognized connection, blush
+   for offline. Text stays dark plum or ink
+   so contrast passes WCAG AA.
+========================================== */
+.network-status {
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--gold);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.network-status h2 { margin-bottom: 0.5rem; }
+.network-status p:last-child { margin-bottom: 0; }
+
+.status-badge {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background-color: var(--placeholder);
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+
+.status-connected {
+    background-color: var(--sage);
+    border-left-color: #2F6B45;
+}
+
+.status-connected .status-badge {
+    background-color: #2F6B45;
+    color: var(--white);
+}
+
+.status-offline {
+    background-color: var(--blush);
+    border-left-color: var(--rose);
+}
+
+.status-offline .status-badge {
+    background-color: var(--rose);
+    color: var(--white);
+}
+
+.network-list dd {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.05rem;
+    word-break: break-word;
+}
+
+/* ==========================================
+   SERVICE DETAIL: RELATED ITEMS
+========================================== */
+.related {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gold);
+}
+
+.detail-text .category-tag { margin-bottom: 0.5rem; }
+
+/* ==========================================
+   PREFERRED VISIT (CHECKOUT AND CONFIRMATION)
+========================================== */
+.visit-box {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    background-color: var(--sage);
+    border-radius: var(--radius);
+}
+
+.visit-box h3 { margin-bottom: 0.4rem; }
+.visit-box p { margin-bottom: 0.4rem; }
+
+.visit-line {
+    background-color: var(--sage);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
 }

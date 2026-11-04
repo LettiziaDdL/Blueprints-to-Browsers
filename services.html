@@ -3,7 +3,7 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 31, 2026
+        Date: November 4, 2026
         Purpose: Service catalog page. JavaScript loops through the product data in
                  js/products.js to display every consultation, treatment, package, and
                  gift card as a product card with its available stock and a working
@@ -15,7 +15,7 @@
     <title>Services | SkInjection Tweakments</title>
 
     <!-- External stylesheet with the brand theme and responsive layout -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Product data and display loop -->
     <script src="js/products.js" defer></script>
@@ -50,8 +50,9 @@
             </div>
         </section>
 
-        <section class="section" aria-label="Service list">
+        <section class="section" aria-labelledby="list-heading">
             <div class="container">
+                <h2 id="list-heading" class="visually-hidden">All services, packages, and gift cards</h2>
                 <!-- Product cards are built by the loop in js/products.js using the data model fields (name, category, description, price, image). -->
                 <p id="product-count" class="help" aria-live="polite"></p>
                 <div class="card-grid" id="product-grid" data-product-grid="all">
@@ -68,6 +69,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact and FAQ</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html">Network Test</a></li>
                 </ul>
             </nav>
             <p>&copy; 2026 SkInjection Tweakments</p>

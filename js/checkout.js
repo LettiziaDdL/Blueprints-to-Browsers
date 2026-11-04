@@ -1,10 +1,13 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 31, 2026
+    Date: November 4, 2026
     Purpose: Runs the Checkout page. Builds the order summary from the shopping cart
              saved in localStorage, applies percentage discounts from valid coupon
              codes, validates the shipping and payment fields, and saves the finished
              order so the confirmation page can show it before the cart is emptied.
+             If a consultation was requested on the Book page, the preferred visit
+             is shown in the summary, saved with the order, and the name and phone
+             fields are filled in from the request.
 */
 
 /* ==========================================
@@ -14,6 +17,10 @@
 ========================================== */
 const cartItems = getCart();
 const ORDER_KEY = "sktLastOrder";
+const BOOKING_KEY = "sktBooking";
+
+// Consultation request from the Book page, if there is one
+const booking = JSON.parse(localStorage.getItem(BOOKING_KEY));
 
 /* ==========================================
    COUPON CODES
@@ -227,10 +234,14 @@ checkoutForm.addEventListener("submit", function(event) {
         subtotal: totals.subtotal,
         discount: totals.discount,
         coupon: activeCoupon ? activeCoupon.code : "",
-        total: totals.total
+        total: totals.total,
+        visit: booking ? `${booking.interest} on ${booking.date} at ${booking.time}` : ""
     };
 
     localStorage.setItem(ORDER_KEY, JSON.stringify(order));
+
+    // The visit request is now part of the order
+    localStorage.removeItem(BOOKING_KEY);
 
     // The items were purchased, so empty the cart (stock stays lowered)
     completeOrder();
@@ -239,6 +250,21 @@ checkoutForm.addEventListener("submit", function(event) {
     checkoutStatus.textContent = "Order placed! Taking you to your confirmation...";
     window.location.href = "confirmation.html";
 });
+
+/* ==========================================
+   PREFERRED VISIT FROM THE BOOK PAGE
+========================================== */
+if (booking) {
+    document.getElementById("visit-details").textContent =
+        `${booking.interest} on ${booking.date} at ${booking.time}. We will call ${booking.phone} to confirm.`;
+    document.getElementById("visit-box").hidden = false;
+
+    // Save the customer some typing
+    const shipName = document.getElementById("ship-name");
+    const shipPhone = document.getElementById("ship-phone");
+    if (!shipName.value) shipName.value = booking.name;
+    if (!shipPhone.value) shipPhone.value = booking.phone;
+}
 
 /* ==========================================
    SHOW THE SUMMARY WHEN THE PAGE LOADS

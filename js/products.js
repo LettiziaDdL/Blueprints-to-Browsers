@@ -1,6 +1,6 @@
 /*
     Author: Lettizia Diaz de Leon
-    Date: October 31, 2026
+    Date: November 4, 2026
     Purpose: Product data model for SkInjection Tweakments. Stores every consultation,
              treatment, package, and gift card in one array of objects, including the
              starting stock for each item, and builds the product cards shown on the
@@ -210,7 +210,8 @@ function createProductCard(product) {
         ? "Starting at " + formatMoney(product.price)
         : formatMoney(product.price);
 
-    const detailLink = product.id === "botox" ? "service.html" : "services.html";
+    // Every card links to the Service Detail template for that product
+    const detailLink = `service.html?id=${product.id}`;
 
     return `
         <article class="card${soldOut ? " out-of-stock" : ""}" data-product-id="${product.id}">

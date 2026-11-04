@@ -3,19 +3,23 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 31, 2026
-        Purpose: Service detail page template showing what to expect and Add to Cart for one service.
+        Date: November 4, 2026
+        Purpose: Service Detail template. One page shows the full details for any
+                 consultation, treatment, package, or gift card based on the ?id= in the
+                 address, using the product data model.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="What to expect from a Botox treatment session at SkInjection Tweakments.">
+    <meta name="description" content="Details, pricing, and what to expect for SkInjection Tweakments services, packages, and gift cards.">
     <title>Botox Treatment Session | SkInjection Tweakments</title>
 
     <!-- External stylesheet with the brand theme and responsive layout -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
     <script src="js/products.js" defer></script>
+    <!-- Fills in the page for the product in the ?id= part of the address -->
+    <script src="js/service.js" defer></script>
     <script src="js/cart.js" defer></script>
 </head>
 
@@ -42,22 +46,26 @@
     <main id="main-content">
         <section class="section" aria-labelledby="page-heading">
             <div class="container">
-                <p class="breadcrumb"><a href="services.html">&larr; Back to Services</a></p>
+                <p class="breadcrumb"><a href="services.html" id="back-link">&larr; Back to Services</a></p>
+
+                <!-- Every field below is filled in by js/service.js from the product data,
+                     based on the ?id= in the address. Botox is shown if no id is given. -->
                 <div class="detail-grid">
-                    <div class="placeholder detail-img" role="img" aria-label="Clean treatment tray ready for an appointment"><span>[ Image placeholder ]</span></div>
+                    <div class="placeholder detail-img" id="detail-img" role="img" aria-label="Clean treatment tray ready for an appointment"><span>[ Image placeholder ]</span></div>
                     <article class="detail-text">
+                        <p class="category-tag" id="detail-category">Treatment</p>
                         <h1 id="page-heading">Botox Treatment Session</h1>
-                        <p class="price">Starting at $300.00</p>
-                        <p>A treatment session scheduled after a consultation. Your provider will talk through your goals and plan a natural-looking result with you.</p>
+                        <p class="price" id="detail-price">Starting at $300.00</p>
+                        <p id="detail-description">Softens fine lines on the forehead, frown lines, and crow's feet.</p>
 
                         <h2>Details</h2>
-                        <dl class="detail-list">
+                        <dl class="detail-list" id="detail-list">
                             <dt>Item number</dt>
-                            <dd>SKT-010</dd>
+                            <dd>SKT-002</dd>
                             <dt>Category</dt>
                             <dd>Treatment</dd>
                             <dt>Appointment length</dt>
-                            <dd>45 minutes</dd>
+                            <dd>30 to 60 minutes</dd>
                             <dt>Deposit due at booking</dt>
                             <dd>$75.00</dd>
                             <dt>Consultation first?</dt>
@@ -65,7 +73,7 @@
                         </dl>
 
                         <h2>What to expect</h2>
-                        <ol>
+                        <ol id="detail-steps">
                             <li>Book an initial consultation if you have not had one yet.</li>
                             <li>Choose this treatment and pay the deposit to reserve your time.</li>
                             <li>We contact you to confirm your appointment.</li>
@@ -73,9 +81,9 @@
                         </ol>
 
                         <!-- Stock and Add to Cart are updated by js/products.js and js/cart.js -->
-                        <div class="stock-wrap" data-stock-for="botox">
+                        <div class="stock-wrap" id="detail-stock" data-stock-for="botox">
                             <p class="stock">Checking availability...</p>
-                            <button type="button" class="button add-to-cart" data-id="botox">Add to Cart<span class="visually-hidden"> Botox Treatment Session</span></button>
+                            <button type="button" class="button add-to-cart" id="detail-add" data-id="botox">Add to Cart<span class="visually-hidden" id="detail-add-name"> Botox Treatment Session</span></button>
                         </div>
 
                         <p class="button-row">
@@ -83,6 +91,12 @@
                         </p>
                     </article>
                 </div>
+
+                <section class="related" aria-labelledby="related-heading">
+                    <h2 id="related-heading">You may also like</h2>
+                    <!-- Filled in by js/service.js with other items from the same category -->
+                    <div class="card-grid" id="related-grid" data-product-grid data-ids=""></div>
+                </section>
             </div>
         </section>
     </main>
@@ -94,6 +108,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact and FAQ</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html">Network Test</a></li>
                 </ul>
             </nav>
             <p>&copy; 2026 SkInjection Tweakments</p>

@@ -3,7 +3,7 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 31, 2026
+        Date: November 4, 2026
         Purpose: Checkout page with a shipping form, a payment form with a coupon code,
                  and an order summary built from the saved shopping cart. JavaScript
                  validates the required fields, applies percentage discounts from valid
@@ -15,7 +15,7 @@
     <title>Checkout | SkInjection Tweakments</title>
 
     <!-- External stylesheet with the brand theme and responsive layout -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Product data, shared validation functions, and checkout logic -->
     <script src="js/products.js" defer></script>
@@ -52,7 +52,7 @@
             </div>
         </section>
 
-        <section class="section" aria-label="Checkout">
+        <section class="section" aria-label="Checkout form and order summary">
             <div class="container checkout-grid">
                 <form class="form" id="checkout-form" novalidate>
                     <p>Fields marked with <span aria-hidden="true">*</span><span class="visually-hidden">an asterisk</span> are required.</p>
@@ -192,7 +192,7 @@
                     <button type="submit" class="button">Place Order</button>
                 </form>
 
-                <aside class="summary" aria-labelledby="summary-heading">
+                <div class="summary" role="region" aria-labelledby="summary-heading">
                     <h2 id="summary-heading">Order Summary</h2>
                     <!-- Items are filled in by js/checkout.js -->
                     <ul class="summary-list" id="summary-list"></ul>
@@ -200,7 +200,14 @@
                     <p class="summary-line discount-line" id="discount-row" hidden><span id="discount-label">Discount</span> <span id="summary-discount">-$0.00</span></p>
                     <p class="summary-total"><span>Total</span> <span id="summary-total">$0.00</span></p>
                     <p class="help"><a href="cart.html">Edit your cart</a></p>
-                </aside>
+
+                    <!-- Shown by js/checkout.js when a consultation was requested on the Book page -->
+                    <div class="visit-box" id="visit-box" hidden>
+                        <h3>Preferred Visit</h3>
+                        <p id="visit-details"></p>
+                        <p class="help"><a href="book.html">Change date or time</a></p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -212,6 +219,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact and FAQ</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html">Network Test</a></li>
                 </ul>
             </nav>
             <p>&copy; 2026 SkInjection Tweakments</p>

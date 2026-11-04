@@ -3,8 +3,10 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 31, 2026
-        Purpose: Consultation request page with a form for a preferred date and time.
+        Date: November 4, 2026
+        Purpose: Consultation request page with a validated form for a preferred date
+                 and time. A valid request adds the Initial Consultation to the cart and
+                 carries the preferred visit through checkout to the confirmation page.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +14,15 @@
     <title>Book a Consultation | SkInjection Tweakments</title>
 
     <!-- External stylesheet with the brand theme and responsive layout -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
     <script src="js/products.js" defer></script>
     <script src="js/cart.js" defer></script>
+
+    <!-- Shared validation functions and the booking form logic -->
+    <script src="js/validation.js" defer></script>
+    <script src="js/book.js" defer></script>
 </head>
 
 <body>
@@ -49,20 +55,25 @@
 
         <section class="section" aria-label="Consultation request form">
             <div class="container narrow">
-                <form class="form" action="checkout.html" method="get">
+                <form class="form" id="booking-form" novalidate>
+                    <p>Fields marked with <span aria-hidden="true">*</span><span class="visually-hidden">an asterisk</span> are required.</p>
+
                     <fieldset>
                         <legend>Your information</legend>
                         <div class="field">
-                            <label for="full-name">Full name</label>
-                            <input type="text" id="full-name" name="full-name" autocomplete="name" required>
+                            <label for="full-name">Full name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="full-name" name="full-name" autocomplete="name" required aria-describedby="full-name-error">
+                            <p class="error" id="full-name-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="email">Email address</label>
-                            <input type="email" id="email" name="email" autocomplete="email" required>
+                            <label for="email">Email address <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+                            <p class="error" id="email-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="phone">Phone number</label>
-                            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+                            <label for="phone">Phone number <span class="required" aria-hidden="true">*</span></label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" required aria-describedby="phone-error">
+                            <p class="error" id="phone-error" aria-live="polite"></p>
                         </div>
                     </fieldset>
 
@@ -78,13 +89,19 @@
                                 <option value="not-sure">I am not sure yet</option>
                             </select>
                         </div>
+                        <div class="field-row">
                         <div class="field">
-                            <label for="visit-date">Preferred date</label>
-                            <input type="date" id="visit-date" name="visit-date" required>
+                            <label for="visit-date">Preferred date <span class="required" aria-hidden="true">*</span></label>
+                            <input type="date" id="visit-date" name="visit-date" required aria-describedby="visit-date-help visit-date-error">
+                            <p class="help" id="visit-date-help">Monday to Saturday, up to 90 days ahead</p>
+                            <p class="error" id="visit-date-error" aria-live="polite"></p>
                         </div>
                         <div class="field">
-                            <label for="visit-time">Preferred time</label>
-                            <input type="time" id="visit-time" name="visit-time" required>
+                            <label for="visit-time">Preferred time <span class="required" aria-hidden="true">*</span></label>
+                            <input type="time" id="visit-time" name="visit-time" min="09:00" max="17:00" step="900" required aria-describedby="visit-time-help visit-time-error">
+                            <p class="help" id="visit-time-help">Between 9:00 AM and 5:00 PM</p>
+                            <p class="error" id="visit-time-error" aria-live="polite"></p>
+                        </div>
                         </div>
                         <div class="field">
                             <label for="notes">Anything you would like us to know?</label>
@@ -93,6 +110,9 @@
                         </div>
                     </fieldset>
 
+                    <p class="notice">Your request adds the Initial Consultation ($50.00) to your cart. You can pay for it, along with any other items, at checkout.</p>
+
+                    <p id="booking-status" class="form-status" role="status" aria-live="polite"></p>
                     <button type="submit" class="button">Continue to Checkout</button>
                 </form>
             </div>
@@ -106,6 +126,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact and FAQ</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html">Network Test</a></li>
                 </ul>
             </nav>
             <p>&copy; 2026 SkInjection Tweakments</p>

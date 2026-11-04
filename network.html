@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Lettizia Diaz de Leon
+        Date: November 4, 2026
+        Purpose: Network Connection Test page. Shows whether the site is running on a
+                 local server, a hosted server, or as a static file, and displays the
+                 local host name, communication port, transmission protocol, and the
+                 last time the site was launched.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Check how the SkInjection Tweakments site is connected: host name, port, protocol, and last launch time.">
+    <title>Network Connection Test | SkInjection Tweakments</title>
+
+    <!-- External stylesheet with the brand theme and responsive layout -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+
+    <!-- Network detection and last launch cookie -->
+    <script src="js/network.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">SkInjection Tweakments</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages and Gift Cards</a></li>
+                    <li><a href="book.html">Book a Consultation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-intro" aria-labelledby="page-heading">
+            <div class="container">
+                <h1 id="page-heading">Network Connection Test</h1>
+                <p>This page checks how the site is being delivered to your browser. Run the site through a local server to see the connection recognized.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Connection results">
+            <div class="container narrow">
+                <!-- Status is updated by js/network.js -->
+                <div class="network-status" id="network-status" role="status" aria-live="polite">
+                    <p class="status-badge" id="status-badge">Checking...</p>
+                    <h2 id="status-heading">Checking connection...</h2>
+                    <p id="status-message">Please wait while the connection is tested.</p>
+                </div>
+
+                <div class="confirm-box">
+                    <h2>Connection Details</h2>
+                    <dl class="detail-list network-list">
+                        <dt>Local Host Name</dt>
+                        <dd id="host-name">Detecting...</dd>
+                        <dt>Current Communication Port</dt>
+                        <dd id="port-number">Detecting...</dd>
+                        <dt>Current Transmission Protocol</dt>
+                        <dd id="protocol-name">Detecting...</dd>
+                        <dt>Last Time Launched</dt>
+                        <dd id="last-launch">No previous launch found.</dd>
+                    </dl>
+
+                    <p class="button-row">
+                        <button type="button" class="button" id="retest-button">Run Test Again</button>
+                    </p>
+                    <p class="help">The last launch time is saved in a cookie each time this page loads on a server, and shown the next time you visit.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact and FAQ</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html" aria-current="page">Network Test</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2026 SkInjection Tweakments</p>
+        </div>
+    </footer>
+</body>
+</html>

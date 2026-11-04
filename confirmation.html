@@ -3,7 +3,7 @@
 <head>
     <!--
         Author: Lettizia Diaz de Leon
-        Date: October 31, 2026
+        Date: November 4, 2026
         Purpose: Confirmation page shown after an order or booking request. After a
                  checkout, js/confirmation.js shows the order number, the items
                  purchased, and the order total.
@@ -14,7 +14,7 @@
     <title>Booking Confirmation | SkInjection Tweakments</title>
 
     <!-- External stylesheet with the brand theme and responsive layout -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Product data and shopping cart (keeps the cart count in the menu up to date) -->
     <script src="js/products.js" defer></script>
@@ -53,6 +53,7 @@
                     <section class="order-details" id="order-details" aria-labelledby="order-heading" hidden>
                         <h2 id="order-heading">Order <span id="order-number"></span></h2>
                         <p class="order-meta" id="order-meta"></p>
+                        <p class="visit-line" id="order-visit" hidden></p>
                         <ul class="summary-list" id="order-items"></ul>
                         <p class="summary-line"><span>Subtotal</span> <span id="order-subtotal"></span></p>
                         <p class="summary-line discount-line" id="order-discount-row" hidden><span id="order-discount-label">Discount</span> <span id="order-discount"></span></p>
@@ -82,6 +83,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact and FAQ</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="network.html">Network Test</a></li>
                 </ul>
             </nav>
             <p>&copy; 2026 SkInjection Tweakments</p>
